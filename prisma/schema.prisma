@@ -1,0 +1,331 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+// =========================
+// 1. TEACHERS (AUTH / USERS)
+// =========================
+model Teacher {
+  id            String   @id @default(uuid())
+  email         String   @unique @db.VarChar(100)
+  first_name    String   @db.VarChar(50)
+  last_name     String   @db.VarChar(50)
+  password_hash String   @db.VarChar(255)
+  created_at    DateTime @default(now()) @db.Timestamp(0)
+  token_version Int      @default(1)
+
+  subjects         Subject[]
+  refresh_sessions RefreshSession[]
+
+  @@map("teachers")
+}
+
+// =========================
+// AUTHENTICATION SESSIONS
+// =========================
+model RefreshSession {
+  id           String   @id @default(uuid())
+  teacher_id   String
+  token_id     String   @unique
+  user_agent   String?  @db.Text
+  ip_address   String?  @db.VarChar(45)
+  is_revoked   Boolean  @default(false)
+  expires_at   DateTime
+  created_at   DateTime @default(now()) @db.Timestamp(0)
+
+  teacher Teacher @relation(fields: [teacher_id], references: [id], onDelete: Cascade)
+
+  @@index([teacher_id])
+  @@index([token_id])
+  @@map("refresh_sessions")
+}
+
+// =========================
+// 2. SUBJECTS
+// =========================
+model Subject {
+  id           String   @id @default(uuid())
+  teacher_id   String
+  code         String   @db.VarChar(20)
+  title        String   @db.VarChar(150)
+  section      String?  @db.VarChar(50)
+  semester     String?  @db.VarChar(20)
+  school_year  String?  @db.VarChar(20)
+  status       String?  @default("Active") @db.VarChar(20)
+  created_at   DateTime @default(now()) @db.Timestamp(0)
+
+  teacher Teacher @relation(fields: [teacher_id], references: [id], onDelete: Cascade)
+
+  grading_weights     GradingWeight[]
+  grading_formula     GradingFormula?
+  students            Student[]
+  attendance_sessions AttendanceSession[]
+  activities          Activity[]
+  performances        Performance[]
+  exams               Exam[]
+  recent_activities   RecentActivity[]
+
+  @@map("subjects")
+}
+
+// =========================
+// 3. GRADING WEIGHTS
+// =========================
+enum GradingComponent {
+  Attendance
+  Activities
+  Participation
+  Midterm_Exam @map("Midterm Exam")
+  Final_Exam   @map("Final Exam")
+}
+
+model GradingWeight {
+  id                String             @id @default(uuid())
+  subject_id        String
+  component_name    GradingComponent
+  weight_percentage Decimal            @db.Decimal(5, 2)
+  updated_at        DateTime           @default(now()) @updatedAt @db.Timestamp(0)
+
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  @@unique([subject_id, component_name], name: "unique_subject_component")
+  @@map("grading_weights")
+}
+
+// =========================
+// 3b. GRADING FORMULA
+// =========================
+enum GradingFormulaType {
+  ZeroBased
+  FloorBased
+  Custom
+}
+
+model GradingFormula {
+  id             String             @id @default(uuid())
+  subject_id     String             @unique
+  formula_type   GradingFormulaType @default(ZeroBased)
+  base_score     Decimal            @default(0) @db.Decimal(5, 2)
+  custom_min     Decimal            @default(0) @db.Decimal(5, 2)
+  custom_max     Decimal            @default(100) @db.Decimal(5, 2)
+  pass_threshold Int                @default(75)
+  updated_at     DateTime           @default(now()) @updatedAt @db.Timestamp(0)
+
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  @@map("grading_formulas")
+}
+
+// =========================
+// 4. STUDENTS
+// =========================
+enum Gender {
+  Male
+  Female
+  Other
+}
+
+model Student {
+  id            String   @id @default(uuid())
+  student_no    String   @db.VarChar(50)
+  subject_id    String
+  full_name     String   @db.VarChar(150)
+  gender        Gender
+  date_enrolled DateTime @db.Date
+  created_at    DateTime @default(now()) @db.Timestamp(0)
+
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  attendance_records AttendanceRecord[]
+  activity_scores    ActivityScore[]
+  performance_scores PerformanceScore[]
+  exam_scores        ExamScore[]
+
+  @@unique([student_no, subject_id], name: "unique_student_subject")
+  @@map("students")
+}
+
+// =========================
+// 5. ATTENDANCE SESSIONS
+// =========================
+model AttendanceSession {
+  id           String   @id @default(uuid())
+  subject_id   String
+  session_date DateTime @db.Date
+  created_at   DateTime @default(now()) @db.Timestamp(0)
+
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  attendance_records AttendanceRecord[]
+
+  @@map("attendance_sessions")
+}
+
+// =========================
+// 6. ATTENDANCE RECORDS
+// =========================
+enum AttendanceStatus {
+  Present
+  Absent
+  Late
+  Excused
+}
+
+model AttendanceRecord {
+  id         String           @id @default(uuid())
+  session_id String
+  student_id String
+  status     AttendanceStatus
+
+  session AttendanceSession @relation(fields: [session_id], references: [id], onDelete: Cascade)
+  student Student           @relation(fields: [student_id], references: [id], onDelete: Cascade)
+
+  @@unique([session_id, student_id], name: "unique_session_student")
+  @@map("attendance_records")
+}
+
+// =========================
+// 7. ACTIVITIES
+// =========================
+enum ActivityType {
+  Quiz
+  Hands_on @map("Hands-on")
+  Activity
+  Project
+}
+
+model Activity {
+  id            String       @id @default(uuid())
+  subject_id    String
+  title         String       @db.VarChar(150)
+  type          ActivityType
+  total_score   Int
+  activity_date DateTime     @db.Date
+  created_at    DateTime     @default(now()) @db.Timestamp(0)
+
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  activity_scores ActivityScore[]
+
+  @@map("activities")
+}
+
+// =========================
+// 8. ACTIVITY SCORES
+// =========================
+model ActivityScore {
+  id             String @id @default(uuid())
+  activity_id    String
+  student_id     String
+  score_obtained Int    @default(0)
+
+  activity Activity @relation(fields: [activity_id], references: [id], onDelete: Cascade)
+  student  Student  @relation(fields: [student_id], references: [id], onDelete: Cascade)
+
+  @@unique([activity_id, student_id], name: "unique_activity_student")
+  @@map("activity_scores")
+}
+
+// =========================
+// 9. PERFORMANCE RECORDS
+// =========================
+model Performance {
+  id               String   @id @default(uuid())
+  subject_id       String
+  title            String   @db.VarChar(150)
+  description      String?  @db.Text
+  total_score      Int
+  performance_date DateTime @db.Date
+
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  performance_scores PerformanceScore[]
+
+  @@map("performances")
+}
+
+// =========================
+// 10. PERFORMANCE SCORES
+// =========================
+model PerformanceScore {
+  id             String @id @default(uuid())
+  performance_id String
+  student_id     String
+  score_obtained Int    @default(0)
+
+  performance Performance @relation(fields: [performance_id], references: [id], onDelete: Cascade)
+  student    Student      @relation(fields: [student_id], references: [id], onDelete: Cascade)
+
+  @@unique([performance_id, student_id], name: "unique_performance_student")
+  @@map("performance_scores")
+}
+
+// =========================
+// 11. EXAMS
+// =========================
+enum ExamType {
+  Midterm
+  Final
+}
+
+model Exam {
+  id          String   @id @default(uuid())
+  subject_id  String
+  title       String   @db.VarChar(150)
+  type        ExamType
+  total_score Int
+  exam_date   DateTime @db.Date
+
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  exam_scores ExamScore[]
+
+  @@map("exams")
+}
+
+// =========================
+// 12. EXAM SCORES
+// =========================
+model ExamScore {
+  id             String @id @default(uuid())
+  exam_id        String
+  student_id     String
+  score_obtained Int    @default(0)
+
+  exam    Exam    @relation(fields: [exam_id], references: [id], onDelete: Cascade)
+  student Student @relation(fields: [student_id], references: [id], onDelete: Cascade)
+
+  @@unique([exam_id, student_id], name: "unique_exam_student")
+  @@map("exam_scores")
+}
+
+// =========================
+// 13. RECENT SYSTEM ACTIVITIES
+// =========================
+model RecentActivity {
+  id            String   @id @default(uuid())
+  subject_id    String
+  activity_text String   @db.VarChar(255)
+  created_at    DateTime @default(now()) @db.Timestamp(0)
+
+  subject Subject @relation(fields: [subject_id], references: [id], onDelete: Cascade)
+
+  @@map("recent_activities")
+}
+
+// =========================
+// 14. REVOKED ACCESS TOKENS
+// =========================
+model RevokedToken {
+  jti        String   @id
+  expires_at DateTime
+
+  @@index([expires_at])
+  @@map("revoked_tokens")
+}

@@ -1,0 +1,657 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ITS300 Section A - Grade Sheet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom scrollbar styles for a cleaner look */
+      ::-webkit-scrollbar {
+        height: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 p-6 min-h-screen text-xs font-sans">
+    <div
+      class="max-w-[98%] mx-auto bg-white shadow-md border border-gray-200 rounded-lg overflow-hidden"
+    >
+      <div class="bg-white border-b border-gray-300 py-4 text-center">
+        <h1 class="text-xl font-bold tracking-wide text-gray-800">
+          ITS300 SECTION A 7:00 AM TO 8:30AM
+        </h1>
+      </div>
+
+      <div class="overflow-x-auto w-full">
+        <table
+          class="w-full border-collapse border border-gray-300 text-center min-w-450"
+        >
+          <thead>
+            <tr
+              class="bg-gray-100 font-bold text-gray-700 uppercase tracking-wider text-[11px]"
+            >
+              <th colspan="3" class="border border-gray-300 py-2 px-4">
+                Student Info
+              </th>
+              <th colspan="7" class="border border-gray-300 bg-blue-50/50 py-2">
+                Attendance 10%
+              </th>
+              <th
+                colspan="6"
+                class="border border-gray-300 bg-green-50/50 py-2"
+              >
+                Activities 20%
+              </th>
+              <th
+                colspan="4"
+                class="border border-gray-300 bg-purple-50/50 py-2"
+              >
+                Performance 10%
+              </th>
+              <th
+                colspan="2"
+                class="border border-gray-300 bg-yellow-50/50 py-2"
+              >
+                Midterm 30%
+              </th>
+              <th
+                colspan="2"
+                class="border border-gray-300 bg-orange-50/50 py-2"
+              >
+                Final 30%
+              </th>
+              <th
+                colspan="2"
+                class="border border-gray-300 bg-emerald-100 py-2 text-emerald-900"
+              >
+                Final Summary
+              </th>
+            </tr>
+            <tr
+              class="bg-gray-50 text-gray-600 font-semibold border-b border-gray-300"
+            >
+              <th class="border border-gray-300 p-2 w-12">No</th>
+              <th class="border border-gray-300 p-2 w-28">ID</th>
+              <th class="border border-gray-300 p-2 text-left px-4 w-64">
+                Name
+              </th>
+
+              <th class="border border-gray-300 p-1 w-14">Jan</th>
+              <th class="border border-gray-300 p-1 w-14">Feb</th>
+              <th class="border border-gray-300 p-1 w-14">March</th>
+              <th class="border border-gray-300 p-1 w-16 text-green-700">
+                Present
+              </th>
+              <th class="border border-gray-300 p-1 w-16 text-red-700">
+                Absent
+              </th>
+              <th
+                class="border border-gray-300 p-1 w-16 font-bold bg-slate-100"
+              >
+                Total
+              </th>
+              <th
+                class="border border-gray-300 p-1 w-20 font-bold bg-blue-100/70 text-blue-800"
+              >
+                %
+              </th>
+
+              <th class="border border-gray-300 p-1 w-16">Act 1</th>
+              <th class="border border-gray-300 p-1 w-16">Act 2</th>
+              <th class="border border-gray-300 p-1 w-16">Act 3</th>
+              <th class="border border-gray-300 p-1 w-24">Hands-on Proj</th>
+              <th
+                class="border border-gray-300 p-1 w-16 font-bold bg-slate-100"
+              >
+                Total
+              </th>
+              <th
+                class="border border-gray-300 p-1 w-20 font-bold bg-green-100/70 text-green-800"
+              >
+                %
+              </th>
+
+              <th class="border border-gray-300 p-1 w-16">Perf 1</th>
+              <th class="border border-gray-300 p-1 w-16">Perf 2</th>
+              <th
+                class="border border-gray-300 p-1 w-16 font-bold bg-slate-100"
+              >
+                Total
+              </th>
+              <th
+                class="border border-gray-300 p-1 w-20 font-bold bg-purple-100/70 text-purple-800"
+              >
+                %
+              </th>
+
+              <th
+                class="border border-gray-300 p-1 w-20 font-bold bg-slate-100"
+              >
+                Total Score
+              </th>
+              <th
+                class="border border-gray-300 p-1 w-20 font-bold bg-yellow-100/70 text-yellow-800"
+              >
+                %
+              </th>
+
+              <th
+                class="border border-gray-300 p-1 w-20 font-bold bg-slate-100"
+              >
+                Total Score
+              </th>
+              <th
+                class="border border-gray-300 p-1 w-20 font-bold bg-orange-100/70 text-orange-800"
+              >
+                %
+              </th>
+
+              <th
+                class="border border-gray-300 p-1 w-24 font-bold bg-emerald-200 text-emerald-950"
+              >
+                Overall Grade
+              </th>
+              <th
+                class="border border-gray-300 p-1 w-24 font-bold bg-emerald-200 text-emerald-950"
+              >
+                Status
+              </th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-gray-200 text-gray-700">
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="border border-gray-300 p-2 font-medium">1</td>
+              <td class="border border-gray-300 p-2 text-slate-500">
+                202500678
+              </td>
+              <td
+                class="border border-gray-300 p-2 text-left font-semibold px-4"
+              >
+                ABRASALDO, JELOU K.
+              </td>
+              <td class="border border-gray-300 p-2">5/5</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2 text-green-600 font-medium">
+                25
+              </td>
+              <td class="border border-gray-300 p-2 text-red-500">0</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                25
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-blue-50/30 font-bold text-blue-700"
+              >
+                10%
+              </td>
+
+              <td class="border border-gray-300 p-2">20/20</td>
+              <td class="border border-gray-300 p-2">15/20</td>
+              <td class="border border-gray-300 p-2">10/30</td>
+              <td class="border border-gray-300 p-2">20/20</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                65/90
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-green-50/30 font-bold text-green-700"
+              >
+                15%
+              </td>
+
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                20/20
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-purple-50/30 font-bold text-purple-700"
+              >
+                10%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                35/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-yellow-50/30 font-bold text-yellow-700"
+              >
+                26%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                35/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-orange-50/30 font-bold text-orange-700"
+              >
+                26%
+              </td>
+
+              <td
+                class="border border-gray-300 p-2 bg-emerald-50 text-base font-bold text-emerald-700"
+              >
+                87.0%
+              </td>
+              <td class="border border-gray-300 p-2 bg-emerald-50 font-bold">
+                <span class="px-2 py-0.5 bg-green-100 text-green-800 rounded"
+                  >PASSED</span
+                >
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="border border-gray-300 p-2 font-medium">2</td>
+              <td class="border border-gray-300 p-2 text-slate-500">
+                202500679
+              </td>
+              <td
+                class="border border-gray-300 p-2 text-left font-semibold px-4"
+              >
+                DELA CRUZ, JUAN P.
+              </td>
+              <td class="border border-gray-300 p-2">4/5</td>
+              <td class="border border-gray-300 p-2">9/10</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2 text-green-600 font-medium">
+                23
+              </td>
+              <td class="border border-gray-300 p-2 text-red-500">2</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                23
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-blue-50/30 font-bold text-blue-700"
+              >
+                9.2%
+              </td>
+
+              <td class="border border-gray-300 p-2">18/20</td>
+              <td class="border border-gray-300 p-2">18/20</td>
+              <td class="border border-gray-300 p-2">25/30</td>
+              <td class="border border-gray-300 p-2">18/20</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                79/90
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-green-50/30 font-bold text-green-700"
+              >
+                17.5%
+              </td>
+
+              <td class="border border-gray-300 p-2">9/10</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                19/20
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-purple-50/30 font-bold text-purple-700"
+              >
+                9.5%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                38/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-yellow-50/30 font-bold text-yellow-700"
+              >
+                28.5%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                36/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-orange-50/30 font-bold text-orange-700"
+              >
+                27.0%
+              </td>
+
+              <td
+                class="border border-gray-300 p-2 bg-emerald-50 text-base font-bold text-emerald-700"
+              >
+                91.7%
+              </td>
+              <td class="border border-gray-300 p-2 bg-emerald-50 font-bold">
+                <span class="px-2 py-0.5 bg-green-100 text-green-800 rounded"
+                  >PASSED</span
+                >
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="border border-gray-300 p-2 font-medium">3</td>
+              <td class="border border-gray-300 p-2 text-slate-500">
+                202500680
+              </td>
+              <td
+                class="border border-gray-300 p-2 text-left font-semibold px-4"
+              >
+                SANTOS, MARIA CLARA LEA G.
+              </td>
+              <td class="border border-gray-300 p-2">5/5</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2">9/10</td>
+              <td class="border border-gray-300 p-2 text-green-600 font-medium">
+                24
+              </td>
+              <td class="border border-gray-300 p-2 text-red-500">1</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                24
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-blue-50/30 font-bold text-blue-700"
+              >
+                9.6%
+              </td>
+
+              <td class="border border-gray-300 p-2">20/20</td>
+              <td class="border border-gray-300 p-2">20/20</td>
+              <td class="border border-gray-300 p-2">28/30</td>
+              <td class="border border-gray-300 p-2">19/20</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                87/90
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-green-50/30 font-bold text-green-700"
+              >
+                19.3%
+              </td>
+
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                20/20
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-purple-50/30 font-bold text-purple-700"
+              >
+                10.0%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                40/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-yellow-50/30 font-bold text-yellow-700"
+              >
+                30.0%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                39/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-orange-50/30 font-bold text-orange-700"
+              >
+                29.2%
+              </td>
+
+              <td
+                class="border border-gray-300 p-2 bg-emerald-50 text-base font-bold text-emerald-700"
+              >
+                98.1%
+              </td>
+              <td class="border border-gray-300 p-2 bg-emerald-50 font-bold">
+                <span class="px-2 py-0.5 bg-green-100 text-green-800 rounded"
+                  >PASSED</span
+                >
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="border border-gray-300 p-2 font-medium">4</td>
+              <td class="border border-gray-300 p-2 text-slate-500">
+                202500681
+              </td>
+              <td
+                class="border border-gray-300 p-2 text-left font-semibold px-4"
+              >
+                ALCANTARA, REYMAR L.
+              </td>
+              <td class="border border-gray-300 p-2">5/5</td>
+              <td class="border border-gray-300 p-2">8/10</td>
+              <td class="border border-gray-300 p-2">8/10</td>
+              <td class="border border-gray-300 p-2 text-green-600 font-medium">
+                21
+              </td>
+              <td class="border border-gray-300 p-2 text-red-500">4</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                21
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-blue-50/30 font-bold text-blue-700"
+              >
+                8.4%
+              </td>
+
+              <td class="border border-gray-300 p-2">15/20</td>
+              <td class="border border-gray-300 p-2">12/20</td>
+              <td class="border border-gray-300 p-2">15/30</td>
+              <td class="border border-gray-300 p-2">15/20</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                57/90
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-green-50/30 font-bold text-green-700"
+              >
+                12.6%
+              </td>
+
+              <td class="border border-gray-300 p-2">8/10</td>
+              <td class="border border-gray-300 p-2">8/10</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                16/20
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-purple-50/30 font-bold text-purple-700"
+              >
+                8.0%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                30/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-yellow-50/30 font-bold text-yellow-700"
+              >
+                22.5%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                28/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-orange-50/30 font-bold text-orange-700"
+              >
+                21.0%
+              </td>
+
+              <td
+                class="border border-gray-300 p-2 bg-emerald-50 text-base font-bold text-red-600"
+              >
+                72.5%
+              </td>
+              <td class="border border-gray-300 p-2 bg-emerald-50 font-bold">
+                <span class="px-2 py-0.5 bg-red-100 text-red-800 rounded"
+                  >FAILED</span
+                >
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="border border-gray-300 p-2 font-medium">5</td>
+              <td class="border border-gray-300 p-2 text-slate-500">
+                202500682
+              </td>
+              <td
+                class="border border-gray-300 p-2 text-left font-semibold px-4"
+              >
+                BAUTISTA, ANNA SHIELA M.
+              </td>
+              <td class="border border-gray-300 p-2">3/5</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2 text-green-600 font-medium">
+                23
+              </td>
+              <td class="border border-gray-300 p-2 text-red-500">2</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                23
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-blue-50/30 font-bold text-blue-700"
+              >
+                9.2%
+              </td>
+
+              <td class="border border-gray-300 p-2">19/20</td>
+              <td class="border border-gray-300 p-2">14/20</td>
+              <td class="border border-gray-300 p-2">22/30</td>
+              <td class="border border-gray-300 p-2">20/20</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                75/90
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-green-50/30 font-bold text-green-700"
+              >
+                16.6%
+              </td>
+
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2">9/10</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                19/20
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-purple-50/30 font-bold text-purple-700"
+              >
+                9.5%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                35/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-yellow-50/30 font-bold text-yellow-700"
+              >
+                26.2%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                37/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-orange-50/30 font-bold text-orange-700"
+              >
+                27.7%
+              </td>
+
+              <td
+                class="border border-gray-300 p-2 bg-emerald-50 text-base font-bold text-emerald-700"
+              >
+                89.2%
+              </td>
+              <td class="border border-gray-300 p-2 bg-emerald-50 font-bold">
+                <span class="px-2 py-0.5 bg-green-100 text-green-800 rounded"
+                  >PASSED</span
+                >
+              </td>
+            </tr>
+
+            <tr class="hover:bg-gray-50 transition-colors">
+              <td class="border border-gray-300 p-2 font-medium">6</td>
+              <td class="border border-gray-300 p-2 text-slate-500">
+                202500683
+              </td>
+              <td
+                class="border border-gray-300 p-2 text-left font-semibold px-4"
+              >
+                GARCIA, KEVIN ROY D.
+              </td>
+              <td class="border border-gray-300 p-2">5/5</td>
+              <td class="border border-gray-300 p-2">7/10</td>
+              <td class="border border-gray-300 p-2">10/10</td>
+              <td class="border border-gray-300 p-2 text-green-600 font-medium">
+                22
+              </td>
+              <td class="border border-gray-300 p-2 text-red-500">3</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                22
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-blue-50/30 font-bold text-blue-700"
+              >
+                8.8%
+              </td>
+
+              <td class="border border-gray-300 p-2">12/20</td>
+              <td class="border border-gray-300 p-2">15/20</td>
+              <td class="border border-gray-300 p-2">18/30</td>
+              <td class="border border-gray-300 p-2">17/20</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                62/90
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-green-50/30 font-bold text-green-700"
+              >
+                13.7%
+              </td>
+
+              <td class="border border-gray-300 p-2">9/10</td>
+              <td class="border border-gray-300 p-2">9/10</td>
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                18/20
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-purple-50/30 font-bold text-purple-700"
+              >
+                9.0%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                32/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-yellow-50/30 font-bold text-yellow-700"
+              >
+                24.0%
+              </td>
+
+              <td class="border border-gray-300 p-2 bg-gray-50/50 font-medium">
+                31/40
+              </td>
+              <td
+                class="border border-gray-300 p-2 bg-orange-50/30 font-bold text-orange-700"
+              >
+                23.2%
+              </td>
+
+              <td
+                class="border border-gray-300 p-2 bg-emerald-50 text-base font-bold text-emerald-700"
+              >
+                78.7%
+              </td>
+              <td class="border border-gray-300 p-2 bg-emerald-50 font-bold">
+                <span class="px-2 py-0.5 bg-green-100 text-green-800 rounded"
+                  >PASSED</span
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
