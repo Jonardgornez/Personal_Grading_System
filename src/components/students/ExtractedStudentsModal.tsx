@@ -32,7 +32,6 @@ type FormValues = z.infer<typeof formSchema>;
 interface ExtractedStudentsModalProps {
   initialStudents: ExtractedStudentRow[];
   existingStudents: { studentNo: string; fullName: string }[];
-  sourceImage?: string | null;
   onConfirm: (students: ExtractedStudentRow[]) => Promise<void>;
   onClose: () => void;
 }
@@ -40,11 +39,9 @@ interface ExtractedStudentsModalProps {
 const ExtractedStudentsModal: React.FC<ExtractedStudentsModalProps> = ({
   initialStudents,
   existingStudents,
-  sourceImage,
   onConfirm,
   onClose,
 }) => {
-  const [zoom, setZoom] = useState(1);
   const {
     register,
     handleSubmit,
@@ -117,11 +114,7 @@ const ExtractedStudentsModal: React.FC<ExtractedStudentsModalProps> = ({
   return (
     <>
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-        <div
-          className={`bg-white rounded-2xl shadow-xl w-full mx-4 p-7 max-h-[85vh] flex flex-col ${
-            sourceImage ? "max-w-6xl" : "max-w-3xl"
-          }`}
-        >
+        <div className="bg-white rounded-2xl shadow-xl w-full mx-4 p-7 max-h-[85vh] flex flex-col max-w-3xl">
           <div className="flex items-start justify-between mb-1">
             <h2 className="text-base font-bold text-slate-800">Review Extracted Students</h2>
             <button
@@ -141,42 +134,6 @@ const ExtractedStudentsModal: React.FC<ExtractedStudentsModalProps> = ({
           </p>
 
           <div className="flex flex-col md:flex-row gap-4 flex-1 min-h-0">
-            {sourceImage && (
-              <div className="md:w-2/5 flex flex-col min-h-0">
-                <div className="flex items-center justify-between mb-2">
-                  <span className="text-xs font-bold text-slate-500 tracking-wider">
-                    SOURCE IMAGE
-                  </span>
-                  <div className="flex items-center gap-1">
-                    <button
-                      type="button"
-                      onClick={() => setZoom((z) => Math.max(0.5, z - 0.25))}
-                      className="cursor-pointer w-6 h-6 rounded border border-slate-200 text-slate-500 hover:bg-slate-50 text-sm leading-none"
-                    >
-                      −
-                    </button>
-                    <span className="text-xs text-slate-400 w-10 text-center">
-                      {Math.round(zoom * 100)}%
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setZoom((z) => Math.min(3, z + 0.25))}
-                      className="cursor-pointer w-6 h-6 rounded border border-slate-200 text-slate-500 hover:bg-slate-50 text-sm leading-none"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-                <div className="flex-1 min-h-0 overflow-auto border border-slate-200 rounded-xl bg-slate-50">
-                  <img
-                    src={sourceImage}
-                    alt="Uploaded class list"
-                    style={{ width: `${zoom * 100}%`, maxWidth: "none" }}
-                  />
-                </div>
-              </div>
-            )}
-
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col flex-1 min-h-0"

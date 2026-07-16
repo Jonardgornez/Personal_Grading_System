@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import ParticipationPageClient from "@/components/participation/ParticipationPageClient";
 import { getPerformances } from "@/actions/performances";
 

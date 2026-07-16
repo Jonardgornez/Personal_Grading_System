@@ -1,7 +1,7 @@
 // actions/teacher/getTeacherName.ts
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { getCurrentTeacher } from "@/lib/auth/getCurrentTeacher";
 
 export async function getTeacherName(teacherId: string) {

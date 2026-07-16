@@ -2,7 +2,7 @@ import { cache } from "react";
 import { cookies } from "next/headers";
 import { getTokensFromCookies } from "@/lib/cookies/authCookies";
 import { verifyAccessToken } from "@/lib/jwt/token";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 
 // Token rotation is handled by middleware (src/middleware.ts).
 // By the time this runs, the access token is guaranteed to be fresh.

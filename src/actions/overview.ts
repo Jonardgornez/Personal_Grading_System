@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { getCurrentTeacher } from "@/lib/auth/getCurrentTeacher";
 import type { OverviewData } from "@/types/domain";
 

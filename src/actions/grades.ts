@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { revalidatePath } from "next/cache";
 import { getCurrentTeacher } from "@/lib/auth/getCurrentTeacher";
 import type {
@@ -9,7 +9,7 @@ import type {
   AttendanceMonthCol,
   GradingFormulaConfig,
 } from "@/types/grades";
-import { GradingComponent } from "@prisma/client";
+import { GradingComponent } from "@/generated/prisma/enums";
 
 const DEFAULT_FORMULA_CONFIG: GradingFormulaConfig = {
   formulaType: "ZeroBased",
@@ -74,7 +74,7 @@ export async function getGradeReport(
     finalExams,
   ] = await Promise.all([
     prisma.gradingWeight.findMany({ where: { subject_id: subjectId } }),
-    prisma.gradingFormula?.findUnique({ where: { subject_id: subjectId } }) ?? Promise.resolve(null),
+    prisma.gradingFormula.findUnique({ where: { subject_id: subjectId } }),
     prisma.student.findMany({
       where: { subject_id: subjectId },
       orderBy: { full_name: "asc" },
@@ -372,9 +372,9 @@ export async function getGradingFormula(
   });
   if (!subject) return { ...DEFAULT_FORMULA_CONFIG };
 
-  const row = await prisma.gradingFormula?.findUnique({
+  const row = await prisma.gradingFormula.findUnique({
     where: { subject_id: subjectId },
-  }) ?? null;
+  });
   if (!row) return { ...DEFAULT_FORMULA_CONFIG };
 
   return {

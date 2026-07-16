@@ -1,9 +1,9 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { revalidatePath } from "next/cache";
 import { getCurrentTeacher } from "@/lib/auth/getCurrentTeacher";
-import { ActivityType } from "@prisma/client";
+import { ActivityType } from "@/generated/prisma/enums";
 import type { ActivityRow, ActivityDetails, StudentScoreRow, StudentActivitySummary } from "@/types/domain";
 
 type ActivityTypeDisplay = "Quiz" | "Hands-on" | "Activity" | "Project";

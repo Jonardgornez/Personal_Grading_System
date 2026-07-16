@@ -3,7 +3,7 @@ import SubjectHeaderServer from "@/components/subject/SubjectHeaderServer";
 import Footer from "@/components/subject/Footer";
 import { ToastProvider } from "@/context/ToastProvider";
 import Link from "next/link";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { notFound } from "next/navigation";
 import { getCurrentTeacher } from "@/lib/auth/getCurrentTeacher";
 

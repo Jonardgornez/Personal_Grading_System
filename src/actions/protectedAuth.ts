@@ -4,7 +4,7 @@ import { cookies, headers } from "next/headers";
 import crypto from "crypto";
 import bcrypt from "bcryptjs";
 import { redirect } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { loginSchema, registerSchema } from "@/lib/validations/auth";
 import {
   signAccessToken,

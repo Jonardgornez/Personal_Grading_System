@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { getCurrentTeacher } from "@/lib/auth/getCurrentTeacher";
 import ActivitiesPageClient from "@/components/activities/ActivitiesPageClient";
 import { getActivities } from "@/actions/activities";

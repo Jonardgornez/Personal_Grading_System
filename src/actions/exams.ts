@@ -1,9 +1,9 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { revalidatePath } from "next/cache";
 import { getCurrentTeacher } from "@/lib/auth/getCurrentTeacher";
-import { ExamType } from "@prisma/client";
+import { ExamType } from "@/generated/prisma/enums";
 import type { ExamRow, ExamDetails, StudentScoreRow } from "@/types/domain";
 
 type ExamTypeDisplay = "Midterm" | "Final";

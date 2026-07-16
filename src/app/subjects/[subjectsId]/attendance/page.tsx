@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { notFound } from "next/navigation";
 import { getCurrentTeacher } from "@/lib/auth/getCurrentTeacher";
 import AttendancePageClient from "@/components/attendance/AttendancePageClient";

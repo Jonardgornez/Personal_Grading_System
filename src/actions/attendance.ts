@@ -1,6 +1,6 @@
 "use server";
 
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { revalidatePath } from "next/cache";
 import { getCurrentTeacher } from "@/lib/auth/getCurrentTeacher";
 import type { AttendanceStatus } from "@/types/attendance";

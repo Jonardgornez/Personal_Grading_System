@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import { verifyRefreshToken, signAccessToken, signRefreshToken } from "@/lib/jwt/token";
 import crypto from "crypto";
 

@@ -1,4 +1,4 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma/prisma";
 import SubjectListClient from "./SubjectListClient";
 
 interface SubjectListServerProps {
