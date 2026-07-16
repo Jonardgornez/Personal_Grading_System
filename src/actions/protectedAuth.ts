@@ -100,6 +100,7 @@ export async function registerAction(
 
     return { success: true };
   } catch (err) {
+    console.error("[registerAction]", err);
     return {
       success: false,
       error: "Account initialization failed. System error.",
@@ -172,6 +173,7 @@ export async function loginAction(formData: FormData): Promise<AuthResponse> {
 
     return { success: true };
   } catch (err) {
+    console.error("[loginAction]", err);
     return { success: false, error: "Authentication engine failure." };
   } finally {
     const elapsed = Date.now() - start;
