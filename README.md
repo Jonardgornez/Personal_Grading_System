@@ -20,7 +20,7 @@ The system automatically computes each student's final grade based on configurab
 | Language         | TypeScript 5                |
 | Runtime          | Node.js 20                  |
 | Database         | MySQL 8.0                   |
-| ORM              | Prisma 5.22.0               |
+| ORM              | Prisma 7.8.0                |
 | Styling          | Tailwind CSS 4              |
 | Authentication   | JWT via jose 6.2.3          |
 | Password Hashing | bcryptjs 3.0.3              |
